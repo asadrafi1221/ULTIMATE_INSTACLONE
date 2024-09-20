@@ -18,7 +18,7 @@ function Login() {
   const isSkeleton = false;
   const dispatch = useDispatch();
   const Authuser = useSelector((state) => state.userAuth.isLoggedIn);
-  const baseurl =`${window.location.org}`
+  const baseurl =`http://localhost:3500`
 
   const onSubmit = async (formdata) => {
     

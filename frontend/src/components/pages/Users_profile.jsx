@@ -11,7 +11,7 @@ const Users_Profile = () => {
   const [post, setUserPost] = useState([]);
   const [PostLength,set_postLength] = useState(0);
 
-  const baseurl = `${window.location.origin}`
+  const baseurl = `http://localhost:3500`
   
 
   const navigate = useNavigate();

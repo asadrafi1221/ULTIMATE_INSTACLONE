@@ -13,7 +13,7 @@ const SignUp = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const baseurl = `${window.localStorage.origin}`
+  const baseurl = `http://localhost:3500`
 
   const navigate = useNavigate();
   const dispatch = useDispatch();

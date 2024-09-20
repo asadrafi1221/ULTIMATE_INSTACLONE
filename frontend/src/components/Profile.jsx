@@ -25,7 +25,7 @@ const Profile = () => {
     const fetchData = async () => {
       try {
         const user_model = await fetch(
-          `${window.location.origin}/api/users/get_authuser`,
+          `http://localhost:3500/api/users/get_authuser`,
           {
             method: "POST",
             headers: {
@@ -107,28 +107,7 @@ const Profile = () => {
         showbar={showbar}
       />
       
-      <div className="Follower_page max-h-96 w-96 bg-trasnparent backdrop-blur-lg  backdrop-filter absolute top-28 hidden left-5 rounded-xl  justify-center overflow-auto p-5 pb-5">
-        <div className="flex flex-col gap-5 center text-white">
-          {Defaultdata.map((ele, index) => (
-            <div
-              key={index}
-              className="bg-gradient-to-r from-black to-blue-500 rounded-md m- flex justify-around  items-center w-[110%] p-4"
-            >
-              <div className="center gap-3">
-                <p className="rounded-[50%] h-10 w-10 center bg-blue-600">
-                  {ele.Logo}
-                </p>
-                <p className="font-bold">{ele.name}</p>
-              </div>
-              <p className="text-sm text-gray-400">{ele.date}</p>
-              <button className="bg-red-800 p-2 rounded-md text-white">
-                Follow
-              </button>
-            </div>
-          ))}
-        </div>
-        
-      </div>
+    
       
 
       

@@ -28,7 +28,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const baseUrl = `${window.location.origin}`
+  const baseurl = `http://localhost:3500`
 
   useEffect(() => {
     const getdata = async () => {

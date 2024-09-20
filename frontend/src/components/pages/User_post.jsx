@@ -3,7 +3,7 @@ import { IoIosHeartEmpty } from "react-icons/io";
 
 
 export const User_post = ({userPosts,setshowbar,showbar,hiddenclass}) => {
-  const baseurl = `${window.location.origin}`
+  const baseurl = `http://localhost:3500`
 
   function timeAgo(date) {
     const seconds = Math.floor((new Date() - new Date(date)) / 1000);

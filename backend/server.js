@@ -3,6 +3,7 @@ import bodyParser from "body-parser"
 import dotenv from "dotenv"
 import cookieParser from "cookie-parser"
 import cors from "cors"
+import path from "path"
 
 dotenv.config()
 
@@ -27,30 +28,17 @@ app.use('/post', postRouter);
 
 
 app.use(express.static('Public'))
-
+app.get("/", (req, res) => {
+  app.use(express.static(path.resolve(__dirname, "frontend", "build")));
+  res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
+});
 
 app.listen(3000, () => {
   console.log('Server running on port 3000');
 });
 
 
-app.get('/users_followers/:userId',async (req,res)=>{
-  const {userId} = req.params
 
-  const user = await User.findById(userId).populate('followers','username');
-   console.log(user)
-  
-   res.status(200).json(user.followers)
-})
-app.get('/users_following/:userId',async (req,res)=>{
-  const {userId} = req.params
-
-  const user = await User.findById(userId).populate('folllowing','username');
-   console.log(user)
-   const following = user.folllowing
-  
-   res.status(200).json(following)
-})
 
 
 

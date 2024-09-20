@@ -13,6 +13,7 @@ const SignUp = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const baseurl = `${window.localStorage.origin}`
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ const SignUp = () => {
     console.log(formData);
 
     try {
-      const response = await fetch("http://localhost:3500/auth/signin", {
+      const response = await fetch(`${baseurl}/auth/signin`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

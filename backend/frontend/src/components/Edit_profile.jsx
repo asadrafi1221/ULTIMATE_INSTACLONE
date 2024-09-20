@@ -30,6 +30,7 @@ export default function Edit_profile({
       });
   }, []);
   const [image, setImage] = useState([]);
+  
 
   const handleEdit = (e) => {
     setedit(false);
@@ -46,7 +47,7 @@ export default function Edit_profile({
 
     try {
       const response = await axios.post(
-        `http://localhost:3500/api/users/uploadImg/${userId}`,
+        `${window.location.origin}/api/users/uploadImg/${userId}`,
         formData,
         {
           headers: {

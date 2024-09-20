@@ -18,7 +18,7 @@ const Mobiles_Navbar = ({ user }) => {
     localStorage.removeItem("User_token");
 
     try {
-      const res = await fetch("http://localhost:3500/auth/logout")
+      const res = await fetch(`${window.location.origin}/auth/logout`)
       const data = await res.json();
       console.log(data);
       navigate("/Login");

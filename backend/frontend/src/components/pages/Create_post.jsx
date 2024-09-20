@@ -43,7 +43,7 @@ const Create_post = ({ PostClass, set_Class, Name, setPosts, setPostCount, setNo
       setImageUrl(newImageUrl);
     }
   };
-  const baseurl = 'http://localhost:3500';
+  const baseurl = `${window.location.origin}`;
 
   const addPost = async (event) => {
   

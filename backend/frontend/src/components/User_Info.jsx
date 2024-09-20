@@ -38,7 +38,7 @@ const User_Info = ({
   console.log(postLength);
   useEffect(() => {
     const GetPresenTuser = async () => {
-      const res = await fetch("http://localhost:3500/api/users/get_authuser", {
+      const res = await fetch(`${window.location.origin}/api/users/get_authuser`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -95,7 +95,7 @@ const User_Info = ({
   };
 
   const displayFollowers = async () => {
-    const url = `http://localhost:3500/api/users/users_followers/`;
+    const url = `${window.location.origin}/api/users/users_followers/`;
     try {
       const response = await fetch(
         `${url}${localStorage.getItem("User_token")}`
@@ -115,7 +115,7 @@ const User_Info = ({
     }
   };
   const displayFollowingUser = async () => {
-    const url = `http://localhost:3500/api/users/users_following/`;
+    const url = `${window.location.origin}/api/users/users_following/`;
     try {
       const response = await fetch(
         `${url}${localStorage.getItem("User_token")}`
@@ -134,7 +134,7 @@ const User_Info = ({
       console.log("Error fetching followers:", err);
     }
   };
-  const baseurl = "http://localhost:3500";
+  const baseurl = `${window.location.origin}`;
 
   const navigate = useNavigate();
   return (

@@ -20,53 +20,12 @@ const Profile = () => {
 
   const id = localStorage.getItem("User_token");
   const navigate = useNavigate();
-  const Defaultdata = [
-    {
-      name: "Cristiano",
-      Logo: "C",
-      date: "joined 2 april 2024",
-    },
-    {
-      name: "Cristiano",
-      Logo: "C",
-      date: "joined 2 april 2024",
-    },
-    {
-      name: "Cristiano",
-      Logo: "C",
-      date: "joined 2 april 2024",
-    },
-    {
-      name: "Cristiano",
-      Logo: "C",
-      date: "joined 2 april 2024",
-    },
-    {
-      name: "Cristiano",
-      Logo: "C",
-      date: "joined 2 april 2024",
-    },
-    {
-      name: "Cristiano",
-      Logo: "C",
-      date: "joined 2 april 2024",
-    },
-    {
-      name: "Cristiano",
-      Logo: "C",
-      date: "joined 2 april 2024",
-    },
-    {
-      name: "Cristiano",
-      Logo: "C",
-      date: "joined 2 april 2024",
-    },
-  ];
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
         const user_model = await fetch(
-          "http://localhost:3500/api/users/get_authuser",
+          `${window.location.origin}/api/users/get_authuser`,
           {
             method: "POST",
             headers: {

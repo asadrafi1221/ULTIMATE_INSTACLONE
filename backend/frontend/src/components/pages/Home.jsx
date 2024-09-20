@@ -28,10 +28,12 @@ const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const baseUrl = `${window.location.origin}`
+
   useEffect(() => {
     const getdata = async () => {
       try {
-        const res = await fetch("http://localhost:3500/post/get_allpost");
+        const res = await fetch(`${baseurl}/post/get_allpost`);
         const users = await res.json();
         console.log("these are users : ");
         console.log(users);
@@ -48,7 +50,7 @@ const Home = () => {
     const presentUser_id = localStorage.getItem("User_token").trim();
 
     try {
-      const response = await fetch("http://localhost:3500/post/like", {
+      const response = await fetch(`${baseurl}/http:/localhost:3500/post/like`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -102,7 +104,7 @@ const Home = () => {
     const postId = e.target.parentElement.querySelector(".hidden").innerHTML;
     try {
       const res = await fetch(
-        `http://localhost:3500/post/get_specificComments/${postId}`
+        `${baseurl}/post/get_specificComments/${postId}`
       );
       if (!res.ok) {
         throw new Error("Network response was not ok");
@@ -121,7 +123,7 @@ const Home = () => {
   const getuser = async () => {
     const id = localStorage.getItem("User_token");
     const userdata = await fetch(
-      `http://localhost:3500/api/users/get_authuser`,
+      `${baseurl}/api/users/get_authuser`,
       {
         method: "POST",
         headers: {
@@ -176,7 +178,7 @@ const Home = () => {
     const dataToSend = { postId, userId, text };
 
     try {
-      const res = await fetch("http://localhost:3500/post/comment", {
+      const res = await fetch(`${baseurl}/post/comment`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -201,7 +203,7 @@ const Home = () => {
     const postId = displaycomments._id;
 
     const res = await fetch(
-      `http://localhost:3500/post/getreplies/${postId}/${commentId}`
+      `${baseurl}/post/getreplies/${postId}/${commentId}`
     );
     const data = await res.json();
 
@@ -229,7 +231,7 @@ const Home = () => {
       const commentId = localStorage.getItem("commentId");
 
       try {
-        const res = await fetch("http://localhost:3500/post/replyoncomment", {
+        const res = await fetch(`${baseurl}/post/replyoncomment`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -255,7 +257,7 @@ const Home = () => {
     console.log("Updated comments",userReplies)
   }, [userReplies],[userReplies]);
 
-  const baseurl = "http://localhost:3500";
+  
   var i = 0;
   return (
     <>

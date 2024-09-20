@@ -18,12 +18,13 @@ function Login() {
   const isSkeleton = false;
   const dispatch = useDispatch();
   const Authuser = useSelector((state) => state.userAuth.isLoggedIn);
+  const baseurl =`${window.location.org}`
 
   const onSubmit = async (formdata) => {
     
     console.log(formdata);
 
-    const url = "http://localhost:3500/auth/login";
+    const url = `${baseurl}/auth/login`;
     try {
       const res = await fetch(url, {
         method: "POST",

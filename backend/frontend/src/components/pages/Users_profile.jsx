@@ -10,6 +10,8 @@ const Users_Profile = () => {
   const [user, setUser] = useState([]);
   const [post, setUserPost] = useState([]);
   const [PostLength,set_postLength] = useState(0);
+
+  const baseurl = `${window.location.origin}`
   
 
   const navigate = useNavigate();
@@ -17,7 +19,7 @@ const Users_Profile = () => {
     const fetchdata = async () => {
       const id = User_id.default_id;
       const user_res = await fetch(
-        "http://localhost:3500/api/users/get_authuser",
+        `${baseurl}/api/users/get_authuser`,
         {
           method: "POST",
           headers: {
@@ -27,7 +29,7 @@ const Users_Profile = () => {
         }
       );
       const posts_res = await fetch(
-        "http://localhost:3500/post/auth_userPosts",
+        `${baseurl}/post/auth_userPosts`,
         {
           method: "POST",
           headers: {

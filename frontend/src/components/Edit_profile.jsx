@@ -47,7 +47,7 @@ export default function Edit_profile({
 
     try {
       const response = await axios.post(
-        `${window.location.origin}/api/users/uploadImg/${userId}`,
+        `http://localhost:3500/api/users/uploadImg/${userId}`,
         formData,
         {
           headers: {
@@ -88,7 +88,7 @@ export default function Edit_profile({
     <div
       className={`${
         editProfile
-          ? "bg-black w-[100vw]  max-h-[85vh]  overflow-auto h-[85vh] md:h-[100vh] md:max-h-[100vh] absolute md:w-[88vw] md:top-0 top-12 flex flex-col z-50 "
+          ? "bg-black w-[100vw]  max-h-[85vh]  overflow-auto h-[85vh] md:h-[100vh] md:max-h-[100vh] absolute md:w-[88vw] lg:w-[80vw] md:top-0 top-12 flex flex-col z-50 "
           : "hidden"
       }`}
     >
@@ -138,7 +138,7 @@ export default function Edit_profile({
             excepturi temporibus{" "}
           </p>
         </div>
-        <div className="w-[93vw] flex items-center justify-center  mt-10">
+        <div className="w-[93vw] lg:w-[80vw] flex items-center justify-center  mt-10">
           <div className="mockup-phone">
             <div className="camera "></div>
             <div className="display flex flex-col justify-center items-center">

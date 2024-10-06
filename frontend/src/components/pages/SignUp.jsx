@@ -54,10 +54,10 @@ const SignUp = () => {
   const isSkeleton = false;
 
   return (
-    <div className="bg-gradient-to-r from-blue-900 to-black flex h-[100vh] flex-col  p-5  w-[100vw] center gap-10 text-white items-center justify-center">
+    <div className="bg-gradient-to-r from-blue-900 to-black flex h-[100vh]  flex-col  p-5   center gap-10 text-white items-center justify-center z-50">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className={`h-[90%] flex flex-col p-5 gap-5 justify-around w-[95%] sm:p-8 bg-black shadow-md shadow-blue-500 ${
+        className={`h-[90%] flex flex-col p-5 gap-5 justify-around w-[95%] md md:sm:p-8 bg-black shadow-md shadow-blue-500 ${
           isSkeleton ? "skeleton " : "  rounded-md shadow-md shadow-black "
         }`}
       >

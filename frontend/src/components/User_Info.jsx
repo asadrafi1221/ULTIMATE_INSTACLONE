@@ -230,13 +230,13 @@ const User_Info = ({
 
       <div className="hidden md:flex md:w-[90vw] lg:w-[900px] p-10 items-center gap-20 h-64 text-white overflow-hidden">
         <div className="">
-          <p className="h-40 w-40 border-2 rounded-[50%] bg-gradient-to-r from-red-500 to-blue-900 font-extralight text-xl flex items-center justify-center ">
+          
           {profileimg ? (
-        <img src={`${baseurl}/${profileimg}`} />
+        <img src={`${baseurl}/${profileimg}`} className="h-40 w-40 border-2 rounded-[50%] bg-gradient-to-r from-red-500 to-blue-900 font-extralight text-xl flex items-center justify-center "/>
       ) : (
-        <p>{'helo'}</p>
+        <p className="h-40 w-40 border-2 rounded-[50%] bg-gradient-to-r from-red-500 to-blue-900 font-extralight text-xl flex items-center justify-center ">{'helo'}</p>
       )}
-          </p>
+          
         </div>
         <div className="flex flex-col gap-5">
           <div className="flex justify-between gap-10">

@@ -1,6 +1,6 @@
 import {Router} from "express"
 import { protectedRoute } from "../middlewear/Protectedrote.js"
-import { commentonPost ,deletepost,LikeUnlikePost ,get_allpost ,getSpecific_Posts,get_specificComments, ReplyonComment, get_replies} from "../controllers/auth/Posts_controller.js";
+import { commentonPost ,deletepost,LikeUnlikePost ,get_allpost ,getSpecific_Posts,get_specificComments, ReplyonComment, get_replies} from "../controllers/Posts_controller.js";
 
 const postRouter  = Router()
 

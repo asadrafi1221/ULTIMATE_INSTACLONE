@@ -3,29 +3,30 @@ import { useNavigate } from "react-router-dom";
 import { GoHomeFill } from "react-icons/go";
 import { LuUserCircle2 } from "react-icons/lu";
 import { IoNotificationsSharp } from "react-icons/io5";
+import { IoChatbubbleOutline } from "react-icons/io5";
 import { CiLogout } from "react-icons/ci";
 
 const Mobiles_Navbar = ({ user }) => {
   const navigate = useNavigate();
 
-  const logout = async () => {
-    const isConfirmed = window.confirm("Do you really want to logout?");
-    if (!isConfirmed) {
-      return;
-    }
+  // const logout = async () => {
+  //   const isConfirmed = window.confirm("Do you really want to logout?");
+  //   if (!isConfirmed) {
+  //     return;
+  //   }
 
-    const token = localStorage.getItem("User_token");
-    localStorage.removeItem("User_token");
+  //   const token = localStorage.getItem("User_token");
+  //   localStorage.removeItem("User_token");
 
-    try {
-      const res = await fetch(`http://localhost:3500/auth/logout`)
-      const data = await res.json();
-      console.log(data);
-      navigate("/Login");
-    } catch (error) {
-      console.error("Logout error:", error);
-    }
-  };
+  //   try {
+  //     const res = await fetch(`http://localhost:3500/auth/logout`)
+  //     const data = await res.json();
+  //     console.log(data);
+  //     navigate("/Login");
+  //   } catch (error) {
+  //     console.error("Logout error:", error);
+  //   }
+  // };
 
   return (
     <>
@@ -41,10 +42,9 @@ const Mobiles_Navbar = ({ user }) => {
             <li onClick={() => navigate("/profile")} className="cursor-pointer">
             <LuUserCircle2 />
             </li>
-            <li onClick={logout} className="cursor-pointer">
-            <CiLogout />
+            <li  className="cursor-pointer" onClick={()=>navigate('/ChatPage')}>
+            <IoChatbubbleOutline />
             </li>
-            
           </ul>
         </div>
       )}

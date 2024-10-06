@@ -81,7 +81,7 @@ const Profile = () => {
 
   return (
    <> 
-    <div className="overflow-hidden h-[100vh] w-[100vw] md:w-[90vw]  md:h-auto z-20 flex flex-col items-center">
+    <div className="overflow-hidden h-[100vh] w-[100vw] md:w-[90vw]  lg:w-[80vw] md:h-auto z-20 flex flex-col items-center">
         <User_Info
           name={userData.username}
           fullname={userData.fullname}

@@ -1,6 +1,6 @@
-import post from "../../models/postModel.js";
-import User from "../../models/user_model.js";
-import Notification from "../../models/Notification.js";
+import post from "../models/postModel.js";
+import User from "../models/user_model.js";
+import Notification from "../models/Notification.js";
 
 
 
@@ -29,7 +29,7 @@ export const deletepost = async (req, res) => {
 export const commentonPost = async (req, res) => {
     try {
         const { text, postId, userId } = req.body;
-
+      console.log(text)
 
         if (!text) return res.status(400).json({ error: "text field is required" })
 
@@ -58,8 +58,7 @@ export const LikeUnlikePost = async (req, res) => {
         const postFound = await post.findById(postId);
         const presentUser = await User.findById(userId);
         const PostOwner = await User.findById(postFound.user);
-        const NotificationFounded = await Notification.findOne({ to: presentUser._id })
-        console.log(NotificationFounded)
+
         if (!postFound) return res.status(404).json({ error: "Post not found" });
         if (!presentUser || !PostOwner) return res.status(400).json({ error: 'Invalid data given by Client Side' });
 
@@ -76,12 +75,12 @@ export const LikeUnlikePost = async (req, res) => {
             });
             await newNotification.save();
             return res.status(200).json({ message: 'Post unliked successfully' });
-
         } else {
             await post.updateOne({ _id: postId }, { $push: { likes: userId } });
             const newNotification = new Notification({
                 from: presentUser._id,
                 to: postFound.user,
+                username: PostOwner.username,
                 sendfrom: presentUser.username,
                 type: 'LIKE',
             });
@@ -92,6 +91,7 @@ export const LikeUnlikePost = async (req, res) => {
         return res.status(500).json({ message: err.message });
     }
 };
+
 
 
 
@@ -108,6 +108,7 @@ export const getSpecific_Posts = async (req, res) => {
     try {
         const { id } = req.body;
         const data = await post.find({ user: id });
+    
         res.status(200).json(data)
     } catch (err) {
         res.status(400).json({ error: err.message })

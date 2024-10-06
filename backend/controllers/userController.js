@@ -138,3 +138,27 @@ export const updateBio = async (req, res) => {
     }
 
 }
+
+
+export const getFollowerFollowing = async (req, res) => {
+    try {
+        const { userId } = req.params;
+
+        const user = await User.findById(userId).populate('followers').populate('folllowing');
+
+        if (!user) {
+            return res.status(404).json('User not found');
+        }
+
+        const data = {
+            followers: user.followers,
+            following: user.folllowing
+        };
+
+        console.log(data);
+
+        res.status(200).json({ message: 'Successful', data });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};

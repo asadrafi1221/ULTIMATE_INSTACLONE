@@ -86,7 +86,7 @@ const Create_post = ({ PostClass, set_Class, Name, setPosts, setPostCount, setNo
 
   return (
     <div
-      className={`${PostClass} absolute w-[100vw] top-0 z-50 create_post md:w-[90vw] flex flex-col overflow-hidden transition-all duration-300 bg-[rgb(0,0,0)]`}
+      className={`${PostClass} absolute w-[100vw] top-0 z-50 create_post md:w-[90vw] lg:w-[80vw] flex flex-col overflow-hidden transition-all duration-300 bg-[rgb(0,0,0)]`}
     >
       <div className='w-[100vw] flex items-center p-5 gap-36 bg-black border_bottom text-white'>
 <p onClick={()=>set_Class('h-[0vh]')} className='text-2xl'>{'<'}</p>

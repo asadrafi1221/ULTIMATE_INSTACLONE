@@ -14,7 +14,8 @@ import {
     get_allusers,
     get_authuser,
     get_presentUser,
-    updateBio
+    updateBio,
+    getFollowerFollowing
 } from '../controllers/userController.js';
 
 
@@ -44,6 +45,7 @@ usersRouter.get('/get_presentuser/:id', get_allusers);
 usersRouter.post('/get_authuser', get_authuser);
 usersRouter.get('/get_presentUser/:postId', get_presentUser);
 usersRouter.get('/updateBio/:userId/:bio', updateBio);
+usersRouter.get('/FollowingFollowers/:userId',getFollowerFollowing)
 
 
 

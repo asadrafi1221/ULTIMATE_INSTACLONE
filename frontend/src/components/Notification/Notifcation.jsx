@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import gsap from "gsap";
+
 // utils/formatDate.js
 import { formatDistanceToNow, parseISO } from 'date-fns';
 
@@ -9,6 +10,7 @@ export const formatRelativeTime = (dateString) => {
   return formatDistanceToNow(date, { addSuffix: true });
 };
  
+const baseurl = `http://localhost:3500`
 
 const Notification = () => {
   const [Notifactions, setNotifications] = useState([]);
@@ -18,7 +20,7 @@ const Notification = () => {
       try {
         const userId = localStorage.getItem("User_token");
         const res = await fetch(
-          `http://localhost:3500/notification/get_notification/${userId}`
+          `${baseurl}/notification/get_notification/${userId}`
         );
         const data = await res.json();
         console.log(data);
@@ -30,7 +32,6 @@ const Notification = () => {
 
     get_notifications();
 
-    // GSAP Animation for artboard background
     const artboardTimeline = gsap.timeline({ repeat: -1, yoyo: true });
     artboardTimeline
       .to(".artboard", {
@@ -49,7 +50,6 @@ const Notification = () => {
         ease: "power1.inOut",
       });
 
-    // GSAP Animation for notification text and boxes
     const notificationTimeline = gsap.timeline();
     notificationTimeline
       .to(".notification_component", {
@@ -68,7 +68,7 @@ const Notification = () => {
 
   return (
     <div className="flex flex-col h-[93vh]  md:h-[100vh] relative animate-background translate-y-[-300%] notification_component overflow-y-auto">
-      <div className="w-[99vw] flex items-center justify-center mt-16 absolute md:w-[90vw] ">
+      <div className="w-[99vw] flex items-center justify-center mt-16 absolute md:w-[90vw] lg:w-[80vw] ">
         <p className="text-2xl font-extralight text-white notificationtext translate-x-[-200%] z-10 lg:text-5xl">
           These are your Notifications
         </p>

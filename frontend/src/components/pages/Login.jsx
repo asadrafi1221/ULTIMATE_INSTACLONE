@@ -53,7 +53,7 @@ function Login() {
   };
   return (
     <>
-      <div className="  flex flex-col items-center justify-center h-[100vh]  md:flex-row w-[100vw] text-white overflow-auto">
+      <div className="flex flex-col items-center justify-center h-[100vh]  md:flex-row  text-white overflow-auto">
         <div className="h-96 bg-transparent rounded-md flex items-center justify-center p-5 w-[100%] ">
           <h1 className=" h-[100%] w-[100%] text-5xl rounded-md  font-extralight bg-black  flex items-center justify-center shadow-md shadow-blue-900">
             Login plz

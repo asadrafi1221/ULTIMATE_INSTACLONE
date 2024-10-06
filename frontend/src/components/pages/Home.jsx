@@ -7,7 +7,8 @@ import { FaRegComment } from "react-icons/fa";
 import { IoIosHeartEmpty } from "react-icons/io";
 import { FaRegUser } from "react-icons/fa";
 import { CiHeart } from "react-icons/ci";
-import { ReplyonComment } from "../../../../backend/controllers/auth/Posts_controller";
+import { ReplyonComment } from "../../../../backend/controllers/Posts_controller";
+import { IoChevronBackCircle } from "react-icons/io5";
 
 const Home = () => {
   const [data, setData] = useState([]);
@@ -47,10 +48,11 @@ const Home = () => {
 
   const HandleuserLikes = async (e) => {
     const postid = e.target.parentElement.firstElementChild.innerHTML.trim();
+    
     const presentUser_id = localStorage.getItem("User_token").trim();
 
     try {
-      const response = await fetch(`${baseurl}/http:/localhost:3500/post/like`, {
+      const response = await fetch(`${baseurl}/post/like`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -69,10 +71,14 @@ const Home = () => {
 
     const likes_para =
       e.target.parentElement.nextElementSibling.querySelector(".user_likes");
-    let likes_num = likes_para.innerHTML;
+      
+    let likes_num = likes_para.innerHTML.replace('likes','');
+   
+    
+    console.log(likes_num)
     let num = Number(likes_num);
-
-    if (!likecolor) {
+   
+    if (likecolor) {
       num++;
     } else {
       num--;
@@ -102,6 +108,7 @@ const Home = () => {
 
   const handleComment = async (e) => {
     const postId = e.target.parentElement.querySelector(".hidden").innerHTML;
+    console.log(postId?postId : 'helo there')
     try {
       const res = await fetch(
         `${baseurl}/post/get_specificComments/${postId}`
@@ -139,35 +146,13 @@ const Home = () => {
 
   getuser();
 
-  //   const now = new Date();
-  //   const updatedAt = new Date(timestamp);
-  //   const diffInSeconds = Math.floor((now - updatedAt) / 1000);
-
-  //   const intervals = [
-  //     { label: "second", seconds: 60 },
-  //     { label: "minute", seconds: 3600 },
-  //     { label: "hour", seconds: 86400 },
-  //     { label: "day", seconds: 604800 },
-  //     { label: "week", seconds: 2419200 },
-  //   ];
-
-  //   for (let i = intervals.length - 1; i >= 0; i--) {
-  //     const interval = intervals[i];
-  //     const intervalInSeconds = interval.seconds;
-  //     if (diffInSeconds >= intervalInSeconds) {
-  //       const count = Math.floor(diffInSeconds / intervalInSeconds);
-  //       return `${count} ${interval.label}${count > 1 ? "s" : ""} ago`;
-  //     }
-  //   }
-
-  //   return "just now";
-  // };
+  
 
   const handleCommentPost = async (e) => {
     const text = e.target.parentElement.querySelector("input").value;
-    const postId = e.target.parentElement.parentElement
-      .querySelector(".hidden")
-      .innerHTML.trim();
+    const postId = e.target.parentElement.parentElement.querySelector('.commentsId').innerHTML.trim()
+      console.log(text)
+      console.log(postId)
     const userId = localStorage.getItem("User_token").trim();
 
     if (!text) {
@@ -261,10 +246,10 @@ const Home = () => {
   var i = 0;
   return (
     <>
-      <div className="flex  w-[100vw]   md:w-[90vw] lg:max-h-[100vh] overflow-y-hidden ">
+      <div className="flex  w-[100vw]   md:w-[90vw] lg:max-h-[100vh] overflow-y-hidden lg:w-[80vw]">
         <div className="all_section overflow-x-hidden  bg-black w-[100vw]   md:w-[90vw]  sm:max-h-[100vh]">
           <div className="bg-black border_bottom flex w-[100vw] justify-between items-center h-16 p-1 gap-2 md:hidden ml-2 mr-2">
-            <em className="font-sans text-white font-bold">AsadGram</em>
+            <em className="font-sans text-white font-bold">SahilKuana</em>
             <div className="flex items-center justify-center gap-3 sm:gap-5 pr-8">
               <input
                 className="bg-gray-600 h-8  rounded-md p-3 text-white w-44"
@@ -312,7 +297,7 @@ const Home = () => {
                     {ele.Image ? (
                       <img
                         src={`${baseurl}/${ele.Image}`}
-                        className={`h-[60vh] object-cover bg-black text-3xl font-extrabold center  sm:rounded-md  sm:w-[500px]`}
+                        className={`h-[60vh] object-contain bg-black text-3xl font-extrabold center  sm:rounded-md  sm:w-[500px]`}
                       />
                     ) : (
                       <p className="h-[60vh]   bg-black text-3xl font-extrabold center  sm:rounded-md sm_border sm:w-[500px]">
@@ -349,13 +334,13 @@ const Home = () => {
                   </div>
                 </div>
               </div>
-            ))}
+            ))} 
           </div>
         </div>
       </div>
-      <div className="w-[100vw] md:w-[90vw] flex justify-center items-center">
+      <div className="w-[100vw] md:w-[90vw] lg:w-[80vw] flex justify-center items-center">
         <div
-          className={`bg-gray-600 absolute bottom-0  w-[100vw]   md:w-[50vw] z-50 duration-500 flex flex-col transition-all border_curvetop md:rounded-xl md:transition-none md:bottom-28 justify-between  ${
+          className={`bg-gray-600 absolute bottom-0  w-[100vw]    md:w-[550px] z-50 duration-500 flex flex-col transition-all border_curvetop md:rounded-xl md:transition-none md:bottom-28 justify-between  ${
             commenstSection ? "h-[77vh]" : "h-[0vh]"
           }`}
         >
@@ -363,21 +348,29 @@ const Home = () => {
             className="w-full flex items-center justify-center mt-5 border_bottom p-2 text-white font-bold"
             onClick={() => setComment(false)}
           >
-            <p>Comments</p>
+            <div className="flex  text-xl w-full items-center justify-center md:justify-start md:text-3xl">
+            <IoChevronBackCircle className='hidden md:flex mb-3'/>
+            <p className="md:hidden">Comments</p>
+            </div>
           </div>
           <div className="flex-1 max-h-[63vh] overflow-y-auto ">
+         
             {commenstSection && displaycomments ? (
               displaycomments.comments.map((ele, index) => (
                 <div className="p-5 border_bottom" key={index}>
+                  
                   {console.log(index)}
                   <p className="hidden">{displaycomments._id}</p>
                   <div className="flex justify-between w-full items-center ">
+
                     <div
                       className="flex items-center gap-5   w-full"
                       onClick={(e) => getUserProfile(e)}
                     >
+                        
                       <p className="hidden">{userData[index]._id}</p>
                       {displaycomments.Image ? (
+
                         <img
                           className="h-10 w-10 rounded-full bg-black border flex items-center justify-center object-cover"
                           src={`${baseurl}/${userData[index].profileImg}`}
@@ -410,11 +403,12 @@ const Home = () => {
                     <div
                       className={`${
                         userData
-                          ? "flex flex-col text-white text-[12px] mt-3"
+                          ? "flex flex-col text-white text-[12px] mt-3 "
                           : "hidden"
                       }`}
                     >
                       <p className="hidden">{ele._id}</p>
+                    
 
                       <p
                         onClick={(e) =>
@@ -459,7 +453,7 @@ const Home = () => {
           </div>
 
           <div className="flex items-center justify-around  h-16  ">
-            <p className="hidden">{displaycomments._id}</p>
+            <p className="hidden commentsId">{displaycomments._id}</p>
             {localStorage.getItem("User_name") ? (
               <img
                 className="h-10 w-10 rounded-[50%] bg-black  flex items-center justify-center"
@@ -486,7 +480,7 @@ const Home = () => {
       <div
         className={`${
           displayReplies
-            ? "flex h-[90vh] w-[100vw] i-c justify-center absolute top-0 z-50 items-center"
+            ? "flex h-[90vh] w-[100vw] i-c justify-center absolute top-0 z-50 items-center  md:w-[90vw] lg:w-[80vw]"
             : "hidden"
         }`}
       >
@@ -494,7 +488,7 @@ const Home = () => {
         <div
           className={`${
             displayReplies
-              ? "flex-1 absolute  w-[90%] max-h-[60vh] overflow-y-auto overflow-x-hidden bg-black rounded-xl p-5"
+              ? "flex-1 absolute  w-[90%] max-h-[60vh] overflow-y-auto overflow-x-hidden bg-black rounded-xl p-5 md:w-[550px]"
               : "hidden"
           }`}
         >
@@ -519,7 +513,7 @@ const Home = () => {
           ))}
       
           <div className="flex items-center  justify-center gap-3 mt-3  z-50">
-          {localStorage.getItem('User_name') ? <img  src={`${baseurl}/${localStorage.getItem('User_name')}`}className="h-8 w-8 rounded-[50%] bg-black  border flex items-center justify-center"  /> : <p className="h-8 w-8 rounded-[50%] bg-black  border flex items-center justify-center">{ele.username.charAt(0)}</p>}
+          {localStorage.getItem('User_name') ? <img  src={`${baseurl}/${localStorage.getItem('User_name')}`}className="h-8 w-8 rounded-[50%] bg-black  border flex items-center justify-center"  /> : <p className="h-8 w-8 rounded-[50%] bg-black  border flex items-center justify-center">{'H'}</p>}
           
             <input
               className="w-[70%] rounded-xl p-1 outline-none"

@@ -5,6 +5,7 @@ import User_Info from "../User_Info";
 import { User_post } from "./User_post";
 import Edit_profile from "../Edit_profile";
 
+
 const Users_Profile = () => {
   const User_id = useSelector((state) => state.getProfile);
   const [user, setUser] = useState([]);

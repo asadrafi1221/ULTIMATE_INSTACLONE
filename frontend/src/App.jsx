@@ -8,7 +8,7 @@ import Profile from "./components/Profile";
 import Mobiles_Navbar from "./components/Mobile_Navbar";
 import Sidebar from "./components/Sidebar";
 import { useSelector, useDispatch } from "react-redux";
-import Users_Profile from "./components/pages/users_profile.jsx";
+import Users_Profile from "./components/pages/Users_profile"
 import Notification from "./components/Notification/Notifcation";
 import Chat from "./components/pages/Chat/Chat";
 import MessageSection from "./components/pages/Chat/MessageSection";
